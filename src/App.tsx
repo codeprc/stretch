@@ -410,10 +410,6 @@ function App() {
     { id: 'playground-streamlining', label: 'Streamlining' },
   ]
 
-  const diagramsLinks = [
-    { id: 'diagrams-editor', label: 'Diagram editor' },
-  ]
-
   const orderedMseSkills = [...mseData.skills].sort((first, second) => Number(starredSkills.has(second.id)) - Number(starredSkills.has(first.id)))
   const searchResults: SiteSearchResult[] = [
     { title: 'Matrix', section: 'Page', tab: 'matrix', targetId: 'widget-white' },
@@ -523,19 +519,19 @@ function App() {
       </div>
       {showPreviousGoals && <div className="goal-history-list">{starredGoals.filter((goal) => goal.item !== activeGoal).length ? starredGoals.filter((goal) => goal.item !== activeGoal).map((goal) => <div id={`goal-item-${goal.id}`} className="goal-history-item" key={goal.item}><button className="goal-history-select" type="button" onClick={() => void activateGoal(goal.item)}><span aria-hidden="true">★</span><span><FormattedText text={goal.item} /></span></button><button className="goal-history-remove" type="button" aria-label={`Remove ${goal.item}`} title="Remove goal" onClick={async () => { await softDeleteStarredGoal(goal.id); setStarredGoals((current) => current.filter((item) => item.id !== goal.id)) }}>-</button></div>) : <p className="goal-history-empty">No previous goals.</p>}</div>}
     </section>
-    <div className="dashboard-shell">
-      <aside className="dashboard-rail" aria-label="Quick navigation">
+    <div className={`dashboard-shell${activeTab === 'diagrams' ? ' no-rail' : ''}`}>
+      {activeTab !== 'diagrams' && <aside className="dashboard-rail" aria-label="Quick navigation">
         <div className="rail-panel">
           <span className="rail-heading">Jump to</span>
           <div className="rail-link-list">
-          {(activeTab === 'matrix' ? matrixLinks : activeTab === 'mse' ? mseLinks : activeTab === 'holding' ? holdingLinks : activeTab === 'ideate' ? ideateLinks : activeTab === 'playground' ? playgroundLinks : diagramsLinks).map((link) => {
+          {(activeTab === 'matrix' ? matrixLinks : activeTab === 'mse' ? mseLinks : activeTab === 'holding' ? holdingLinks : activeTab === 'ideate' ? ideateLinks : playgroundLinks).map((link) => {
             const skill = activeTab === 'mse' ? mseData.skills.find((entry) => `mse-skill-${entry.id}` === link.id) : undefined
             const isStarred = skill ? starredSkills.has(skill.id) : false
             return <div key={link.id} className="rail-link-row">{skill && <button className={`rail-star${isStarred ? ' starred' : ''}`} type="button" disabled={!activeGoal.trim()} aria-label={`${isStarred ? 'Unstar' : 'Star'} ${link.label}${activeGoal.trim() ? '' : ', enter a goal first'}`} aria-pressed={isStarred} title={activeGoal.trim() ? `${isStarred ? 'Remove' : 'Add'} ${link.label} ${isStarred ? 'from' : 'to'} this goal` : 'Enter a goal first'} onClick={() => void toggleSkillStar(skill)}>{isStarred ? '★' : '☆'}</button>}<a className="rail-link" href={`#${link.id}`}><FormattedText text={link.label} /></a></div>
           })}
           </div>
         </div>
-      </aside>
+      </aside>}
       <div className="dashboard-main-column">
         {activeTab === 'matrix' ? (
           <>

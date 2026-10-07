@@ -472,3 +472,10 @@ html { font-size: calc(100% + 2pt); scroll-behavior: smooth; }
 .diagram-stage { grid-template-rows: auto auto minmax(0, 1fr); }
 .drawio-add-button { margin-right: 0; background: #8fc3e8; border-color: #4d899b; color: #12303f; }
 .drawio-add-button.added { background: #1f4c63; border-color: #123547; color: #bfe3f7; }
+.dashboard-shell.no-rail { grid-template-columns: minmax(0, 1fr); }
+.diagrams-layout { grid-template-columns: minmax(0, 1fr); }
+.diagram-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.diagram-list li { grid-template-columns: minmax(0, 1fr) auto auto; min-width: 180px; max-width: 280px; }
+.diagrams-page { padding-bottom: 0; }
+.diagram-stage { width: 100vw; margin-left: calc(50% - 50vw); border-inline: 0; }
+.diagram-frame { height: calc(100vh - 150px); min-height: 520px; }
