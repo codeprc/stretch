@@ -1,0 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root { --display: 'Space Grotesk', sans-serif; --mono: 'DM Mono', monospace; --text-main: #e9eee8; --text-muted: #8c9a96; --bg: #16201e; --surface: #202d29; --border: #35443f; --pill: #2a3934; --accent: #d8a65b; --toggle-bg: #49665d; --shadow: rgba(0, 0, 0, .2); font-family: var(--mono); color: var(--text-main); background: var(--bg); font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+[data-theme='light'] { --text-main: #18211f; --text-muted: #687570; --bg: #f1f0e9; --surface: #fbfaf5; --border: #d8ddd4; --pill: #edf0e8; --toggle-bg: #a8b8ab; --shadow: rgba(43, 55, 48, .08); }
+* { box-sizing: border-box; transition: background-color .25s ease, color .25s ease, border-color .25s ease; } body { margin: 0; min-width: 320px; background: var(--bg); } button, input { font-family: inherit; }
